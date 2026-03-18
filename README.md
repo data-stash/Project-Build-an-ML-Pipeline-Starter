@@ -25,6 +25,9 @@ Running the pipeline:
 20. copy the best hyperparameters from your last run to the config.yaml file of the project, so they can become default values for future training
 21. release your model
 22. train it on many other samples!
+23. mlflow run https://github.com/[your github username]/Project-Build-an-ML-Pipeline-Starter.git \
+             -v [the version you want to use, like 1.0.1] \
+             -P hydra_options="etl.sample='sample2.csv'" (or any smaple you want really!)
 
 
 # Build an ML Pipeline for Short-Term Rental Prices in NYC - dev environment setup
