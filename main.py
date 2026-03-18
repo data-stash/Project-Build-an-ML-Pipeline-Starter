@@ -59,17 +59,26 @@ def go(config: DictConfig):
                     "output_artifact": "clean_sample.csv",
                     "output_type": "clean_sample",
                     "output_description": "Basic clean sample data",
-                    "min_price": config["etl"]["min_price"]
+                    "min_price": config["etl"]["min_price"],
                     "max_price": config["etl"]["max_price"]
                 },
             )
             #pass
 
         if "data_check" in active_steps:
-            ##################
-            # Implement here #
-            ##################
-            pass
+            
+            _ = mlflow.run(
+                os.path.join(root_path, "src", "data_check"),
+                "main",
+                parameters={
+                    "csv": "nyc_airbnb/clean_sample.csv:latest",
+                    "ref": "nyc_airbnb/clean_sample.csv:reference",
+                    "kl_threshold": config['data_ckeck']["kl_threshold"],
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"]
+                }
+            )
+            #pass
 
         if "data_split" in active_steps:
             ##################
