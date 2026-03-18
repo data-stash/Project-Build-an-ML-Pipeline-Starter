@@ -128,7 +128,7 @@ def go(config: DictConfig):
                 "main",
                 parameters={
                 "mlflow_model": "nyc_airbnb/random_forest_export:prod",
-                "test_artifact": "nyc_airbnb/test_data.csv:latest"
+                "test_dataset": "nyc_airbnb/test_data.csv:latest"
                 },
             )
 
