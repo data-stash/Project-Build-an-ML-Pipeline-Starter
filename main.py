@@ -52,7 +52,7 @@ def go(config: DictConfig):
         if "basic_cleaning" in active_steps:
             
             _ = mlflow.run(
-                os.path.join(root_path, "src", "basic_cleaning"),
+                os.path.join("src", "basic_cleaning"),
                 "main",
                 parameters={
                     "input_artifact": "nyc_airbnb/sample.csv:latest",
@@ -68,12 +68,12 @@ def go(config: DictConfig):
         if "data_check" in active_steps:
             
             _ = mlflow.run(
-                os.path.join(root_path, "src", "data_check"),
+                os.path.join("src", "data_check"),
                 "main",
                 parameters={
                     "csv": "nyc_airbnb/clean_sample.csv:latest",
                     "ref": "nyc_airbnb/clean_sample.csv:reference",
-                    "kl_threshold": config['data_ckeck']["kl_threshold"],
+                    "kl_threshold": config['data_check']["kl_threshold"],
                     "min_price": config["etl"]["min_price"],
                     "max_price": config["etl"]["max_price"]
                 }
