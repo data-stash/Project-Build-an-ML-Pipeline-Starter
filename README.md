@@ -1,4 +1,33 @@
-# Build an ML Pipeline for Short-Term Rental Prices in NYC
+
+# This is a project for my Machine Learning Dev Ops class
+# Setup of the enviromnet is below this section
+
+Running the pipeline:
+1. mlflow run . -P steps=download
+2. go to src/eda
+3. jupyter-lab
+4. run all the cells
+5. save notebook
+6. crtl+C (or crtl+Z if you want the jupyter running in the background)
+7. running eda should generate sample.csv as an artifact on W&B
+8. cd ../.. (go back to the root directory of the project)
+9. mlflow run . -P steps=basic_cleaning
+10. it should generate clean_samle.csv on W&B
+11. got to W&B and find clean_sample.csv:latest, add "reference" tag to it
+12. go back to your terminal
+13. mlflow run . -P steps=data_check
+14. 6 tests should pass
+15. mlflow run . -P steps=data_split
+16. it should create test_data.csv and trainval_data.csv on W&B
+17. mlflow run . -P steps=train_random_forest -P hydra_options="modeling.random_forest.max_depth=10,50 modeling.random_forest.n_estimators=100,200 -m"
+18. select the best model and tag it as "prod"
+19. mlflow run . -P steps=test_regression_model
+20. copy the best hyperparameters from your last run to the config.yaml file of the project, so they can become default values for future training
+21. release your model
+22. train it on many other samples!
+
+
+# Build an ML Pipeline for Short-Term Rental Prices in NYC - dev environment setup
 You are working for a property management company renting rooms and properties for short periods of 
 time on various rental platforms. You need to estimate the typical price for a given property based 
 on the price of similar properties. Your company receives new data in bulk every week. The model needs 
