@@ -52,7 +52,7 @@ def go(config: DictConfig):
         if "basic_cleaning" in active_steps:
             
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/basic_cleaning",
+                os.path.join("src", "basic_cleaning"),
                 "main",
                 parameters={
                     "input_artifact": "nyc_airbnb/sample.csv:latest",
@@ -68,7 +68,7 @@ def go(config: DictConfig):
         if "data_check" in active_steps:
             
             _ = mlflow.run(
-                f"{config['main']['components_repository']}/data_check",
+                os.path.join("src", "data_check"),
                 "main",
                 parameters={
                     "csv": "nyc_airbnb/clean_sample.csv:latest",
