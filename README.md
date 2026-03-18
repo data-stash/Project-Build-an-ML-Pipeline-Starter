@@ -2,6 +2,8 @@
 # This is a project for my Machine Learning Dev Ops class
 # Setup of the enviromnet is below this section
 
+Link to Weights&Biases: [https://wandb.ai/data-stash-western-governors-university/nyc_airbnb]
+
 Running the pipeline:
 1. mlflow run . -P steps=download
 2. go to src/eda
